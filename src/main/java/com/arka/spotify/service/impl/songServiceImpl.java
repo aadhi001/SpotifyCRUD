@@ -33,14 +33,8 @@ public class songServiceImpl implements songService {
 
 	@Override
 	public Song update(Song song) throws Exception {
-		Optional<Song> optSong = this.songRepository.findById(song.getSongId());
-		if(!optSong.isPresent())
-		{
-			throw new Exception();
-		}
-		else
-		{	
-		Song repSong = optSong.get();
+		Song repSong = new Song();
+		try {
         repSong.setSongId(song.getSongId());
         repSong.setSongName(song.getSongName());
         repSong.setGenre(song.getGenre());
@@ -50,7 +44,11 @@ public class songServiceImpl implements songService {
 
 		return this.songRepository.save(repSong);
 		}
-	}
+		catch(Exception e)
+		{
+		  throw new Exception(e);	
+		}
+}
 
 	
 	@Override
