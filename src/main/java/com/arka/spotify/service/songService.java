@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.arka.spotify.model.Song;
 
 @Component
-public interface songService {
+public interface SongService {
 
 	public List<Song> getAll();
 

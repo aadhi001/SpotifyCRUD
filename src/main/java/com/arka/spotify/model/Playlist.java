@@ -32,9 +32,8 @@ public class Playlist {
 	}
 
 	//Constructor
-	public Playlist(long playlistId,String playlistName, String description) 
+	public Playlist(String playlistName, String description) 
 	{
-	   this.playlistId=playlistId;
        this.playlistName=playlistName;
        this.description=description;
 	}

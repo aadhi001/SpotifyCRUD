@@ -18,32 +18,30 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.arka.spotify.model.Playlist;
 import com.arka.spotify.model.Song;
+import com.arka.spotify.service.PlaylistService;
 import com.arka.spotify.service.SongService;
 
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/api")
-public class SongController {
-
-	
+public class PlaylistController {
 	@Autowired
-	SongService songService;
+	PlaylistService playlistService;
 
-	//Creating a new song
-	@PostMapping("/song")
-	public ResponseEntity<Song> createSong(@RequestBody Song song) {
-			Song songObj = new Song(song.getSongName(),song.getArtistName(), song.getSongDuration(), song.getGenre());
+	//Creating a new playlist
+	@PostMapping("/playlist")
+	public ResponseEntity<Playlist> createPlaylist(@RequestBody Playlist playlist) {
+			Playlist plObj = new Playlist(playlist.getPlaylistName(),playlist.getDescription());
 			try {
-			    this.songService.update(song);
-			    return new ResponseEntity<>(songObj, HttpStatus.CREATED);
+			    this.playlistService.update(plObj);
+			    return new ResponseEntity<>(plObj, HttpStatus.CREATED);
 			}
 			catch(Exception e)
 			{
             	return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
 		} 
-	 
 	}
 
 

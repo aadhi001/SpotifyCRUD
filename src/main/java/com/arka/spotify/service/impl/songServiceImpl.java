@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.arka.spotify.model.Song;
-import com.arka.spotify.service.songService;
+import com.arka.spotify.service.SongService;
 import com.arka.spotify.repository.*;
 
 @Service
 
-public class songServiceImpl implements songService {
+public class songServiceImpl implements SongService {
 	
 	@Autowired
 	private songRepository songRepository;
