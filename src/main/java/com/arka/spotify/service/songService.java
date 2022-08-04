@@ -19,5 +19,7 @@ public interface SongService {
 	public Song delete(long id);
 
 	public Optional<Song> getSongById(long id);
+	
+//	List<Song> searchSongByName(String query);
 
 	}

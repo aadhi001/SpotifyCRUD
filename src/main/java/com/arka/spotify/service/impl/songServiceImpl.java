@@ -62,5 +62,11 @@ public class songServiceImpl implements SongService {
 	public Optional<Song> getSongById(long id) {
 		return this.songRepository.findById(id);
 	}
+	
+//    @Override
+//    public List<Song> searchSongByName(String query) {
+//        List<Song> songs = songRepository.searchBySongName(query);
+//        return songs;
+//    }
 
 }
