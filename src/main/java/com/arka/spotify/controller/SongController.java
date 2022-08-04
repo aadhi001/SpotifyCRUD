@@ -36,15 +36,14 @@ public class SongController {
 	public ResponseEntity<Song> createSong(@RequestBody Song song) {
 			Song songObj = new Song(song.getSongName(),song.getArtistName(), song.getSongDuration(), song.getGenre());
 			try {
-			    this.songService.update(song);
-			    return new ResponseEntity<>(songObj, HttpStatus.CREATED);
+			    Song _song = this.songService.update(song);
+			    return new ResponseEntity<>(_song, HttpStatus.CREATED);
 			}
 			catch(Exception e)
 			{
             	return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
 		} 
-	
 	 
 	}
 

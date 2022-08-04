@@ -20,6 +20,4 @@ public interface SongService {
 
 	public Optional<Song> getSongById(long id);
 	
-//	List<Song> searchSongByName(String query);
-
 	}

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.arka.spotify.model.Playlist;
@@ -28,20 +29,40 @@ import com.arka.spotify.service.SongService;
 public class PlaylistController {
 	@Autowired
 	PlaylistService playlistService;
+	
+	@Autowired
+	SongService songService;
 
 	//Creating a new playlist
 	@PostMapping("/playlist")
 	public ResponseEntity<Playlist> createPlaylist(@RequestBody Playlist playlist) {
 			Playlist plObj = new Playlist(playlist.getPlaylistName(),playlist.getDescription());
 			try {
-			    this.playlistService.update(plObj);
-			    return new ResponseEntity<>(plObj, HttpStatus.CREATED);
+			    Playlist _playlist = this.playlistService.update(plObj);
+			    return new ResponseEntity<>(_playlist, HttpStatus.CREATED);
 			}
 			catch(Exception e)
 			{
             	return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
 		} 
+	
+	//Adding a song to the playlist
+	@PutMapping("/playlist/{playlistId}")
+	public ResponseEntity<Song> addToPlaylist(@PathVariable("playlistId") long playlistId, @RequestBody Song song)
+	{
+		Optional<Song> songData = songService.getSongById(song.getSongId());
+		Optional<Playlist> playlistObj = playlistService.getPlaylistById(playlistId);
+		Song songObj = songData.get();
+		songObj.setPlaylistId(playlistId);
+	    try {
+			songService.update(songObj);
+			return new ResponseEntity<>(songObj, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}		
+	}
+	
 	}
 
 
