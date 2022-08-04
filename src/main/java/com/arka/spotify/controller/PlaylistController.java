@@ -52,11 +52,15 @@ public class PlaylistController {
 	public ResponseEntity<Song> addToPlaylist(@PathVariable("playlistId") long playlistId, @RequestBody Song song)
 	{
 		Optional<Song> songData = songService.getSongById(song.getSongId());
-		Optional<Playlist> playlistObj = playlistService.getPlaylistById(playlistId);
+		Optional<Playlist> playlistData = playlistService.getPlaylistById(playlistId);
 		Song songObj = songData.get();
+		Playlist playlistObj = playlistData.get();
+		List<Long> songsInPlaylist = playlistObj.getSongs();
 		songObj.setPlaylistId(playlistId);
 	    try {
 			songService.update(songObj);
+			songsInPlaylist.add(song.getSongId());
+			
 			return new ResponseEntity<>(songObj, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

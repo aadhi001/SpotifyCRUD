@@ -1,4 +1,6 @@
 package com.arka.spotify.model;
+import java.util.List;
+
 import javax.persistence.*;
 
 /*
@@ -26,7 +28,11 @@ public class Playlist {
 	@Column(name = "description")
 	private String description;
 	
+	@Column(name = "songs")
+	@ElementCollection(targetClass=Long.class)
+	private List<Long> songs;
 	
+
 	public Playlist() {
 
 	}
@@ -62,6 +68,13 @@ public class Playlist {
 		this.description = description;
 	}
 
+	public List<Long> getSongs() {
+		return songs;
+	}
+
+	public void setSongs(List<Long> songs) {
+		this.songs = songs;
+	}
 
 
 	@Override
