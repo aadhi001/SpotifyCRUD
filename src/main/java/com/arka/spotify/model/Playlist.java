@@ -1,5 +1,6 @@
 package com.arka.spotify.model;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -28,9 +29,9 @@ public class Playlist {
 	@Column(name = "description")
 	private String description;
 	
-	@Column(name = "songs")
-	@ElementCollection(targetClass=Long.class)
-	private List<Long> songs;
+    @OneToMany(mappedBy = "playlist")
+    private Set<Song> songs = new HashSet<>();
+ 
 	
 
 	public Playlist() {
@@ -68,11 +69,11 @@ public class Playlist {
 		this.description = description;
 	}
 
-	public List<Long> getSongs() {
+	public Set<Song> getSongs() {
 		return songs;
 	}
 
-	public void setSongs(List<Long> songs) {
+	public void setSongs(Set<Song> songs) {
 		this.songs = songs;
 	}
 

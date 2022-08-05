@@ -22,10 +22,10 @@ public class Song {
 	@Column(name =  "genre")
     private String genre;
 	
-	@Column(name = "playlistId")
-	private long playlistId;
-	
-	
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "playlistId")
+    private Playlist playlist;
+
 	public Song() {
 
 	}
@@ -79,18 +79,17 @@ public class Song {
 		this.genre = genre;
 	}
 
-	public long getPlaylistId() {
-		return playlistId;
+	public Playlist getPlaylist() {
+		return playlist;
 	}
 
-	public void setPlaylistId(long playlistId) {
-		this.playlistId = playlistId;
+	public void setPlaylist(Playlist playlist) {
+		this.playlist = playlist;
 	}
-
 
 	@Override
 	public String toString() {
-		return "Song [id=" + songId + ", songName=" + songName + ", artistName=" + artistName + ",songDuration="+ songDuration +",city="+genre+",playlistId="+ playlistId+"]";
+		return "Song [id=" + songId + ", songName=" + songName + ", artistName=" + artistName + ",songDuration="+ songDuration +",city="+genre+"]";
 	}
 }
 

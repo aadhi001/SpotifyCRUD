@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.arka.spotify.model.Playlist;
 
 @Repository
-public interface playlistRepository extends JpaRepository<Playlist, Long> {
+public interface PlaylistRepository extends JpaRepository<Playlist, Long> {
 	
 }

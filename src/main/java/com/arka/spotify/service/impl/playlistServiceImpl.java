@@ -1,6 +1,5 @@
 package com.arka.spotify.service.impl;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -19,7 +18,7 @@ import com.arka.spotify.repository.*;
 public class playlistServiceImpl implements PlaylistService {
 	
 	@Autowired
-	private playlistRepository playlistRepository;
+	private PlaylistRepository playlistRepository;
 
 	
 	@Override

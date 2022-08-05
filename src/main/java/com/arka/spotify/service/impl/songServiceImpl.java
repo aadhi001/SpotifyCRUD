@@ -1,6 +1,5 @@
 package com.arka.spotify.service.impl;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -41,7 +40,6 @@ public class songServiceImpl implements SongService {
         repSong.setSongId(song.getSongId());
         repSong.setSongName(song.getSongName());
         repSong.setGenre(song.getGenre());
-        repSong.setPlaylistId(song.getPlaylistId());
         repSong.setSongDuration(song.getSongDuration());
         repSong.setArtistName(song.getArtistName());
 
