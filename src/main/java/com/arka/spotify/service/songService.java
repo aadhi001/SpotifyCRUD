@@ -20,4 +20,5 @@ public interface SongService {
 
 	public Optional<Song> getSongById(long id);
 	
+	public Boolean isDuplicate(String songName);
 	}
