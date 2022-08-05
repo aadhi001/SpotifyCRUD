@@ -1,7 +1,10 @@
 package com.arka.spotify.service.impl;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -57,5 +60,16 @@ public class playlistServiceImpl implements PlaylistService {
 	public Optional<Playlist> getPlaylistById(long id) {
 		return this.playlistRepository.findById(id);
 	}
-
+	
+	@Override
+	public Boolean isDuplicate(String artistName)
+	{
+		List<Playlist> allPlaylist = getAll();
+		Set<String> allPlaylistNames = allPlaylist.stream().map(Playlist :: getPlaylistName).collect(Collectors.toSet());
+        if(allPlaylistNames.add(artistName)==false)
+        {
+        	return true;
+        }
+        return false;
+	}
 }

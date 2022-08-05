@@ -19,5 +19,7 @@ public interface PlaylistService {
 	public Playlist delete(long id);
 
 	public Optional<Playlist> getPlaylistById(long id);
+	
+	public Boolean isDuplicate(String artistName);
 
 	}

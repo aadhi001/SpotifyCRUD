@@ -38,6 +38,8 @@ public class PlaylistController {
 	public ResponseEntity<Playlist> createPlaylist(@RequestBody Playlist playlist) {
 			Playlist plObj = new Playlist(playlist.getPlaylistName(),playlist.getDescription());
 			try {
+				if(playlistService.isDuplicate(playlist.getPlaylistName()))
+				{return new ResponseEntity<>(HttpStatus.CONFLICT);}
 			    Playlist _playlist = this.playlistService.update(plObj);
 			    return new ResponseEntity<>(_playlist, HttpStatus.CREATED);
 			}
