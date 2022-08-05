@@ -34,12 +34,12 @@ public class SongController {
 	//Creating a new song
 	@PostMapping("/song")
 	public ResponseEntity<Song> createSong(@RequestBody Song song) {
+		try {
 		    if(songService.isDuplicate(song.getSongName()))
 		    {
 		    	return new ResponseEntity<>(HttpStatus.CONFLICT);
 		    }
 			Song songObj = new Song(song.getSongName(),song.getArtistName(), song.getSongDuration(), song.getGenre());
-			try {
 			    Song _song = this.songService.update(song);
 			    return new ResponseEntity<>(_song, HttpStatus.CREATED);
 			}

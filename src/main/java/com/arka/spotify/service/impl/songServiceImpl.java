@@ -70,15 +70,11 @@ public class songServiceImpl implements SongService {
     public Boolean isDuplicate(String songName)
     {
     	List<Song> allSongs = getAll();
-    	List<String> allSongNames = allSongs.stream().map(Song::getSongName).collect(Collectors.toList());
-        Set<String> songSet = new HashSet<>();
-        for(String songNameItr : allSongNames)
-        {
-        	if(songSet.add(songNameItr)==false)
+    	Set<String> allSongNames = allSongs.stream().map(Song::getSongName).collect(Collectors.toSet());
+        	if(allSongNames.add(songName)==false)
         	{
         		return true; 
         	}
-        }
     	return false;
     }
 }
