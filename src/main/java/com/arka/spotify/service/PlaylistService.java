@@ -3,11 +3,9 @@ package com.arka.spotify.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Component;
 
 import com.arka.spotify.model.Playlist;
 
-@Component
 public interface PlaylistService {
 
 	public List<Playlist> getAll();
